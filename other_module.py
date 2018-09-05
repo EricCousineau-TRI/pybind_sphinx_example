@@ -63,15 +63,8 @@ def CalcPointsGeometricJacobianExpressedInWorld():
 
 def SparseMatrixToRowColumnValueVectors():
     r"""
-    the non-zero entries.
+    For a sparse matrix, return the row indices, the column indices, and value of
     For example, the matrix
-    <!--
-    mat = [1 0 2;
-          [0 3 4]
-    has row = [0 1 0 1]
-        col = [0 1 2 2]
-        val = [1 3 2 4]
-    -->
     \f[
     mat = \begin{bmatrix} 1 & 0 & 2\\
                           0 & 3 & 4\end{bmatrix}
