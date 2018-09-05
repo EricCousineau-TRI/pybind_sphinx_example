@@ -1,0 +1,180 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>&lt;no title&gt; &#8212; Example 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">Example 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p>Yawr</p>
+<span class="target" id="module-sphinx_example"></span><p>Hello world</p>
+<dl class="function">
+<dt id="sphinx_example.func">
+<code class="descclassname">sphinx_example.</code><code class="descname">func</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_example.func" title="Permalink to this definition">¶</a></dt>
+<dd><p>Func</p>
+</dd></dl>
+
+<span class="target" id="module-other_module"></span><p>Yo</p>
+<dl class="function">
+<dt id="other_module.CalcPointsGeometricJacobianExpressedInWorld">
+<code class="descclassname">other_module.</code><code class="descname">CalcPointsGeometricJacobianExpressedInWorld</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#other_module.CalcPointsGeometricJacobianExpressedInWorld" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a set of points <cite>Qi</cite> with fixed position vectors <cite>p_BQi</cite> in a frame
+B, (that is, their time derivative <cite>ᴮd/dt(p_BQi)</cite> in frame B is zero),
+this method computes the geometric Jacobian <cite>Jv_WQi</cite> defined by:
+&lt;pre&gt;</p>
+<blockquote>
+<div>v_WQi(q, v) = Jv_WQi(q)⋅v</div></blockquote>
+<p>&lt;/pre&gt;
+where <cite>p_WQi</cite> is the position vector in the world frame for each point
+<cite>Qi</cite> in the input set, <cite>v_WQi(q, v)</cite> is the translational velocity of
+point <cite>Qi</cite> in the world frame W and q and v are the vectors of generalized
+position and velocity, respectively. Since the spatial velocity of each
+point <cite>Qi</cite> is linear in the generalized velocities, the geometric
+Jacobian <cite>Jv_WQi</cite> is a function of the generalized coordinates q only.</p>
+<dl class="docutils">
+<dt>&#64;param[in] context</dt>
+<dd>The context containing the state of the model. It stores the
+generalized positions q.</dd>
+<dt>&#64;param[in] frame_B</dt>
+<dd>The positions <cite>p_BQi</cite> of each point in the input set are measured and
+expressed in this frame B and are constant (fixed) in this frame.</dd>
+<dt>&#64;param[in] p_BQi_set</dt>
+<dd>A matrix with the fixed position of a set of points <cite>Qi</cite> measured and
+expressed in <cite>frame_B</cite>.
+Each column of this matrix contains the position vector <cite>p_BQi</cite> for a
+point <cite>Qi</cite> measured and expressed in frame B. Therefore this input
+matrix lives in ℝ³ˣⁿᵖ with <cite>np</cite> the number of points in the set.</dd>
+<dt>&#64;param[out] p_WQi_set</dt>
+<dd>The output positions of each point <cite>Qi</cite> now computed as measured and
+expressed in frame W. These positions are computed in the process of
+computing the geometric Jacobian <cite>J_WQi</cite> and therefore external storage
+must be provided.
+The output <cite>p_WQi_set</cite> <strong>must</strong> have the same size
+as the input set <cite>p_BQi_set</cite> or otherwise this method throws a
+std::runtime_error exception. That is <cite>p_WQi_set</cite> <strong>must</strong> be in
+<cite>ℝ³ˣⁿᵖ</cite>.</dd>
+<dt>&#64;param[out] Jv_WQi</dt>
+<dd><p class="first">The geometric Jacobian <cite>Jv_WQi(q)</cite>, function of the generalized
+positions q only. This Jacobian relates the translational velocity
+<cite>v_WQi</cite> of each point <cite>Qi</cite> in the input set by: &lt;pre&gt;</p>
+<blockquote>
+<div><cite>v_WQi(q, v) = Jv_WQi(q)⋅v</cite></div></blockquote>
+<p class="last">&lt;/pre&gt;
+so that <cite>v_WQi</cite> is a column vector of size <cite>3⋅np</cite> concatenating the
+velocity of all points <cite>Qi</cite> in the same order they were given in the
+input set. Therefore <cite>J_WQi</cite> is a matrix of size <cite>3⋅np x nv</cite>, with <cite>nv</cite>
+the number of generalized velocities. On input, matrix <cite>J_WQi</cite> <strong>must</strong>
+have size <cite>3⋅np x nv</cite> or this method throws a std::runtime_error
+exception.</p>
+</dd>
+</dl>
+<p>&#64;throws an exception if the output <cite>p_WQi_set</cite> is nullptr or does not have
+the same size as the input array <cite>p_BQi_set</cite>.
+&#64;throws an exception if <cite>Jv_WQi</cite> is nullptr or if it does not have the
+appropriate size, see documentation for <cite>Jv_WQi</cite> for details.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="other_module.SparseMatrixToRowColumnValueVectors">
+<code class="descclassname">other_module.</code><code class="descname">SparseMatrixToRowColumnValueVectors</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#other_module.SparseMatrixToRowColumnValueVectors" title="Permalink to this definition">¶</a></dt>
+<dd><p>For a sparse matrix, return the row indices, the column indices, and value of
+For example, the matrix
+f[
+mat = begin{bmatrix} 1 &amp; 0 &amp; 2\</p>
+<blockquote>
+<div>0 &amp; 3 &amp; 4end{bmatrix}</div></blockquote>
+<p>f]
+has
+f[
+row = begin{bmatrix} 0 &amp; 1 &amp; 0 &amp; 1end{bmatrix}\
+col = begin{bmatrix} 0 &amp; 1 &amp; 2 &amp; 2end{bmatrix}\
+val = begin{bmatrix} 1 &amp; 3 &amp; 2 &amp; 4end{bmatrix}
+f]
+&#64;param[in] matrix the input sparse matrix
+&#64;param[out] row_indices a vector containing the row indices of the
+non-zero entries
+&#64;param[out] col_indices a vector containing the column indices of the
+non-zero entries
+&#64;param[out] val a vector containing the values of the non-zero entries.</p>
+</dd></dl>
+
+<p>Weew!</p>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="#">Table Of Contents</a></h3>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">Example 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018 Peeps.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.2.
+    </div>
+  </body>
+</html>
