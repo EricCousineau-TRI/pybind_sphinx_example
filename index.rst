@@ -1,6 +1,9 @@
 Yawr
 
-.. automodule:: sphinx_example
-   :members:
+.. autosummary::
+   :toctree: _autosummary
+
+   sphinx_example
+   other_module
 
 Weew!
